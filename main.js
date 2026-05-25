@@ -1,5 +1,5 @@
 /* ============================================================
-   KAZAAR LODGE — main.js
+   Anina's Executive LODGE — main.js
    Note: Mobile nav open/close is handled inline in index.html
    ============================================================ */
 
