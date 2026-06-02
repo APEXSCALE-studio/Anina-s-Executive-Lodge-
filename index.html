@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Anina's Executive Lodge — Lusaka, Zambia. Pool, restaurant, free breakfast, free Wi-Fi, free parking. Book direct via WhatsApp."/>
+<title>Anina's Executive Lodge — Lusaka, Zambia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#c9a84c;--gold-light:#e8c97e;--earth:#2c1f0e;--bark:#3a2a14;--cream:#f5f0e8;--charcoal:#1a1510;--sand:#d4c4a8;--deep:#0e0b07}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Jost',sans-serif;background:var(--charcoal);color:var(--cream);overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{text-decoration:none;-webkit-tap-highlight-color:transparent}
+button{-webkit-tap-highlight-color:transparent;cursor:pointer;font-family:'Jost',sans-serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem;background:rgba(14,11,7,.96);border-bottom:1px solid rgba(201,168,76,.15);transition:padding .3s}
+nav.scrolled{padding:.7rem 1.2rem}
+.nav-logo{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.15em;color:var(--gold);line-height:1.3}
+.nav-logo span{color:var(--cream);font-weight:400}
+.nav-cta{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);padding:.55rem 1.2rem;border:none;min-height:44px;display:none}
+.hamburger{display:flex;flex-direction:column;gap:5px;padding:8px;margin:-8px;min-width:44px;min-height:44px;align-items:center;justify-content:center;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--cream);display:block}
+
+/* MOBILE NAV */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:8000;display:none}
+.overlay.show{display:block}
+.mobile-nav{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(14,11,7,.98);z-index:9000;display:flex;flex-direction:column;justify-content:center;align-items:center;transform:translateX(-100%);transition:transform .3s ease;pointer-events:none}
+.mobile-nav.open{transform:translateX(0);pointer-events:auto}
+.mobile-nav ul{list-style:none;text-align:center}
+.mobile-nav ul a{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 3rem}
+.mobile-nav ul a:active{color:var(--gold)}
+.close-btn{position:absolute;top:1.2rem;right:1.2rem;width:52px;height:52px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.35);border-radius:50%;color:var(--cream);font-size:1.3rem;display:flex;align-items:center;justify-content:center}
+
+/* HERO */
+.hero{position:relative;height:100svh;min-height:580px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('images/aerial.jpg') center/cover no-repeat;animation:heroZoom 12s ease-out forwards}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,11,7,.5) 0%,rgba(14,11,7,.2) 45%,rgba(14,11,7,.82) 100%)}
+@keyframes heroZoom{from{transform:scale(1.06)}to{transform:scale(1)}}
+.hero-content{position:relative;z-index:2;padding:0 1.5rem}
+.hero-badge{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.4rem 1.1rem;margin-bottom:1.3rem;display:inline-block;opacity:0;animation:fadeUp 1s .4s forwards}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,11vw,6.5rem);font-weight:300;line-height:.95;color:var(--cream);opacity:0;animation:fadeUp 1s .7s forwards}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-sub{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);margin-top:1.2rem;opacity:0;animation:fadeUp 1s 1s forwards}
+.hero-cta{margin-top:2rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s 1.3s forwards}
+.btn-primary{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);padding:.9rem 2rem;display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:none}
+.btn-outline{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);background:transparent;padding:.9rem 2rem;border:1px solid rgba(245,240,232,.5);display:inline-flex;align-items:center;justify-content:center;min-height:48px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* TRUST BAR */
+.trust-bar{background:var(--deep);border-bottom:1px solid rgba(201,168,76,.12);padding:1rem 1.2rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.trust-inner{display:flex;gap:1.5rem;align-items:center;min-width:max-content}
+.trust-item{display:flex;align-items:center;gap:.55rem;flex-shrink:0}
+.trust-icon{color:var(--gold);font-size:.9rem}
+.trust-text{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sand);white-space:nowrap}
+.trust-text strong{color:var(--cream);display:block;font-size:.72rem;text-transform:none;font-weight:400}
+
+/* SECTION COMMON */
+.section-label{font-size:.63rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.8rem}
+.section-header{text-align:center;margin-bottom:2.5rem;padding:0 1rem}
+.section-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,8vw,3.8rem);font-weight:300;color:var(--cream);line-height:1.1}
+.section-header h2 em{font-style:italic;color:var(--gold-light)}
+.section-header p{font-size:.88rem;color:var(--sand);line-height:1.8;margin:.8rem auto 0;max-width:500px}
+
+/* ABOUT */
+.about{display:flex;flex-direction:column}
+.about-img{position:relative;height:260px;overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,var(--charcoal))}
+.about-text{background:var(--charcoal);padding:2rem 1.5rem 3rem}
+.about-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,7vw,3.2rem);font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:1.2rem}
+.about-text h2 em{font-style:italic;color:var(--gold-light)}
+.about-text p{font-size:.88rem;line-height:1.85;color:var(--sand);margin-bottom:.9rem}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.8rem;padding-top:1.5rem;border-top:1px solid rgba(201,168,76,.2)}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--gold);line-height:1}
+.stat-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sand);margin-top:.2rem}
+
+/* GALLERY — vertical auto-scroll */
+.gallery-strip-wrapper{width:100%;height:420px;overflow:hidden}
+.gallery-track{display:flex;flex-direction:column;width:100%;animation:galleryScrollV 18s linear infinite}
+.gallery-strip-wrapper:hover .gallery-track{animation-play-state:paused}
+@keyframes galleryScrollV{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+.gs-item{width:100%;height:210px;flex-shrink:0;overflow:hidden;position:relative}
+.gs-item img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.gs-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(14,11,7,.85));padding:.7rem .8rem .5rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+
+/* AMENITIES */
+.amenities{padding:3rem 1.2rem;background:var(--deep)}
+.amenities-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.amenity-card{padding:1.3rem 1rem;border:1px solid rgba(201,168,76,.14);background:rgba(201,168,76,.03);text-align:center}
+.amenity-icon{font-size:1.5rem;margin-bottom:.6rem}
+.amenity-title{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.amenity-desc{font-size:.75rem;color:var(--sand);line-height:1.55}
+.amenity-tag{display:inline-block;margin-top:.4rem;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);padding:.18rem .5rem}
+
+/* ROOMS */
+.rooms{padding:3rem 1.2rem;background:var(--charcoal)}
+.rooms-grid{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.room-card{border:1px solid rgba(201,168,76,.16);overflow:hidden;background:var(--deep)}
+.room-img{height:220px;overflow:hidden;position:relative}
+.room-img img{width:100%;height:100%;object-fit:cover;display:block}
+.room-badge{position:absolute;top:.8rem;right:.8rem;background:var(--gold);color:var(--charcoal);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .6rem;font-family:'Cinzel',serif}
+.room-body{padding:1.4rem}
+.room-type{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.room-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:.55rem}
+.room-desc{font-size:.82rem;color:var(--sand);line-height:1.7;margin-bottom:1rem}
+.room-features{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.feat-tag{font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sand);background:rgba(201,168,76,.08);padding:.25rem .6rem;border:1px solid rgba(201,168,76,.18)}
+.room-price{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light)}
+.room-price span{font-size:.68rem;color:var(--sand);font-family:'Jost',sans-serif}
+.room-price small{display:block;font-size:.63rem;color:rgba(212,196,168,.5);font-family:'Jost',sans-serif;margin-top:.1rem}
+.room-book{display:block;width:100%;margin-top:1.1rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;text-align:center;color:var(--charcoal);background:var(--gold);padding:.9rem;border:none;min-height:48px}
+.room-book:active{background:var(--gold-light)}
+
+/* PRICING */
+.pricing{padding:3rem 1.2rem;background:var(--bark)}
+.pricing-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,6vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:1.5rem}
+.pricing-title em{font-style:italic;color:var(--gold-light)}
+.pricing-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.pricing-table th{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding:.75rem .8rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.28)}
+.pricing-table td{color:var(--sand);padding:.75rem .8rem;border-bottom:1px solid rgba(201,168,76,.08);vertical-align:top}
+.price-cell{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold-light);white-space:nowrap}
+.pricing-note{font-size:.75rem;color:rgba(212,196,168,.6);margin-top:1.2rem;line-height:1.75}
+.pricing-note strong{color:var(--gold)}
+
+/* DINING */
+.dining{padding:3rem 1.2rem;background:var(--charcoal)}
+.dining-inner{display:flex;flex-direction:column;gap:2rem}
+.dining-photos{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.dining-photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px}
+.dining-photos img:first-child{grid-column:span 2;aspect-ratio:16/8}
+.dining-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,7vw,3rem);font-weight:300;color:var(--cream);line-height:1.15;margin-bottom:1.1rem}
+.dining-text h2 em{font-style:italic;color:var(--gold-light)}
+.dining-text p{font-size:.88rem;line-height:1.85;color:var(--sand);margin-bottom:.9rem}
+.dining-hours{font-size:.78rem;color:rgba(212,196,168,.6)}
+
+/* POOL */
+.pool-section{padding:3rem 1.2rem;background:var(--earth)}
+.pool-grid{display:flex;flex-direction:column;gap:.8rem;margin-top:2rem}
+.pool-grid img{width:100%;aspect-ratio:16/9;object-fit:cover}
+
+/* REVIEWS */
+.reviews{padding:3rem 1.2rem;background:var(--bark)}
+.review-scores{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:2rem;padding:1.2rem;border:1px solid rgba(201,168,76,.18);background:rgba(14,11,7,.4)}
+.score-item{text-align:center}
+.score-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);line-height:1}
+.score-label{font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);margin-top:.2rem}
+.reviews-grid{display:flex;flex-direction:column;gap:1.2rem}
+.review-card{padding:1.5rem;border:1px solid rgba(201,168,76,.13);background:rgba(14,11,7,.45)}
+.review-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem}
+.review-stars{color:var(--gold);font-size:.85rem}
+.review-platform{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(212,196,168,.38)}
+.review-meta{font-size:.72rem;color:var(--gold);margin-bottom:1rem;opacity:.85}
+.review-quote{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;line-height:1.7;color:var(--cream);margin-bottom:1.2rem}
+.review-footer{display:flex;align-items:center;gap:.7rem;padding-top:.8rem;border-top:1px solid rgba(201,168,76,.1)}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:rgba(201,168,76,.18);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);flex-shrink:0}
+.review-name{font-size:.78rem;color:var(--cream)}
+.review-origin{font-size:.62rem;color:rgba(212,196,168,.48)}
+.reviews-cta{text-align:center;margin-top:2rem}
+.btn-outline-gold{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:transparent;padding:.85rem 2rem;border:1px solid rgba(201,168,76,.4);display:inline-flex;align-items:center;min-height:48px}
+
+/* FAQ */
+.faq{padding:3rem 1.2rem;background:var(--charcoal)}
+.faq-inner{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(201,168,76,.13)}
+.faq-question{width:100%;background:none;border:none;color:var(--cream);font-family:'Jost',sans-serif;font-size:.92rem;text-align:left;padding:1.1rem 0;min-height:52px;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq-arrow{color:var(--gold);transition:transform .3s;flex-shrink:0;font-size:.85rem}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-answer{font-size:.85rem;line-height:1.85;color:var(--sand);padding-bottom:1.2rem;max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.open .faq-answer{max-height:300px}
+
+/* LOCATION */
+.location-section{padding:3rem 1.2rem;background:var(--deep)}
+.map-container{width:100%;height:300px;border:1px solid rgba(201,168,76,.2);overflow:hidden;margin-bottom:1.5rem}
+.location-cards{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.5rem}
+.loc-card{padding:1rem;border:1px solid rgba(201,168,76,.14);background:rgba(201,168,76,.03)}
+.loc-icon{font-size:1.2rem;display:block;margin-bottom:.4rem}
+.loc-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem}
+.loc-val{font-size:.82rem;color:var(--sand);line-height:1.55}
+.loc-val a{color:var(--gold-light)}
+
+/* BOOKING SECTION */
+.booking-section{padding:3rem 1.2rem;background:var(--earth)}
+.booking-inner{display:flex;flex-direction:column;gap:2rem;margin-top:2rem}
+.contact-item{display:flex;align-items:center;gap:.85rem;margin-bottom:.9rem}
+.contact-icon{width:42px;height:42px;flex-shrink:0;border:1px solid rgba(201,168,76,.4);display:flex;align-items:center;justify-content:center}
+.contact-icon svg{width:16px;height:16px;fill:var(--gold)}
+.contact-detail{font-size:.85rem;color:var(--sand)}
+.contact-detail strong{display:block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.1rem;font-weight:400}
+.avail-badge{display:inline-flex;align-items:center;gap:.5rem;margin-top:.5rem;background:rgba(107,124,94,.12);border:1px solid rgba(107,124,94,.35);padding:.45rem .9rem}
+.avail-dot{width:7px;height:7px;background:#7bc67e;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.avail-badge span{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#a8d5aa}
+.booking-form-box{background:rgba(14,11,7,.7);border:1px solid rgba(201,168,76,.22);padding:1.8rem 1.4rem}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--cream);margin-bottom:.15rem}
+.form-subtitle{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.form-group{margin-bottom:.9rem}
+.form-group label{display:block;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);margin-bottom:.4rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(245,240,232,.06);border:1px solid rgba(201,168,76,.3);color:var(--cream);font-family:'Jost',sans-serif;font-size:1rem;padding:.85rem 1rem;outline:none;-webkit-appearance:none;border-radius:0;min-height:48px;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(212,196,168,.35)}
+.form-group select option{background:var(--earth);color:var(--cream)}
+.form-group textarea{resize:vertical;min-height:80px}
+.price-estimate{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);padding:.9rem 1rem;margin-bottom:1rem;display:none}
+.price-estimate.show{display:block}
+.est-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);margin-bottom:.2rem}
+.est-amount{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold-light)}
+.est-note{font-size:.65rem;color:rgba(212,196,168,.5);margin-top:.15rem}
+.send-options{display:flex;flex-direction:column;gap:.7rem;margin-top:1.2rem}
+.btn-whatsapp{display:flex;align-items:center;justify-content:center;gap:.65rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#25D366;border:none;padding:1rem;min-height:52px;width:100%}
+.btn-whatsapp:active{background:#1ebe59}
+.btn-email{display:flex;align-items:center;justify-content:center;gap:.65rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);background:var(--gold);border:none;padding:1rem;min-height:52px;width:100%}
+.btn-email:active{background:var(--gold-light)}
+.btn-whatsapp svg,.btn-email svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+.form-policy{font-size:.66rem;color:rgba(212,196,168,.4);margin-top:.8rem;line-height:1.6;text-align:center}
+
+/* POLICIES */
+.policies{padding:2.5rem 1.2rem;background:var(--deep)}
+.policies-inner{display:flex;flex-direction:column;gap:1rem}
+.policy-card{padding:1.4rem;border:1px solid rgba(201,168,76,.12)}
+.policy-icon{font-size:1.3rem;margin-bottom:.6rem}
+.policy-title{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.policy-text{font-size:.82rem;line-height:1.75;color:var(--sand)}
+
+/* FOOTER */
+footer{background:var(--earth);padding:2.5rem 1.2rem 2rem;border-top:1px solid rgba(201,168,76,.16)}
+.footer-grid{display:flex;flex-direction:column;gap:2rem;margin-bottom:2rem}
+.footer-brand .nav-logo{font-size:.85rem}
+.footer-brand p{font-size:.82rem;line-height:1.8;color:var(--sand);margin-top:.8rem}
+.map-link{display:inline-block;margin-top:.8rem;font-size:.8rem;color:var(--gold)}
+.footer-col h4{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.55rem}
+.footer-col ul a{font-size:.82rem;color:var(--sand)}
+.footer-col ul a:active{color:var(--gold)}
+.footer-bottom{padding-top:1.5rem;border-top:1px solid rgba(201,168,76,.1);display:flex;flex-direction:column;gap:.4rem}
+.footer-bottom p{font-size:.68rem;color:rgba(212,196,168,.4)}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);animation:floatAnim 3s ease-in-out infinite}
+.wa-float svg{width:28px;height:28px;fill:white}
+@keyframes floatAnim{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* TABLET 640px+ */
+@media(min-width:640px){
+  .amenities-grid{grid-template-columns:repeat(2,1fr)}
+  .pool-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+  .pool-grid img{aspect-ratio:4/3}
+  .pool-grid img:first-child{grid-column:span 2;aspect-ratio:16/7}
+  .reviews-grid{display:grid;grid-template-columns:1fr 1fr}
+  .policies-inner{display:grid;grid-template-columns:1fr 1fr}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  .footer-bottom{flex-direction:row;justify-content:space-between}
+  .location-cards{grid-template-columns:repeat(4,1fr)}
+  .map-container{height:380px}
+  .gallery-strip-wrapper{height:500px}
+  .gs-item{height:250px}
+}
+
+/* DESKTOP 960px+ */
+@media(min-width:960px){
+  nav{padding:1.2rem 2.5rem}
+  .nav-logo{font-size:1rem;max-width:none}
+  .hamburger{display:none}
+  .nav-cta{display:inline-flex}
+  .about{display:grid;grid-template-columns:1fr 1fr}
+  .about-img{height:auto;min-height:520px}
+  .about-img::after{background:linear-gradient(to right,transparent 55%,var(--charcoal))}
+  .about-text{padding:5rem 4rem 5rem 3.5rem}
+  .about-stats{grid-template-columns:repeat(4,1fr)}
+  .gallery-strip-wrapper{height:600px}
+  .gs-item{height:300px}
+  .amenities{padding:5rem 2.5rem}
+  .amenities-grid{grid-template-columns:repeat(4,1fr);max-width:1100px;margin:0 auto;gap:1.5rem}
+  .rooms{padding:6rem 2.5rem}
+  .rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1200px;margin:2.5rem auto 0}
+  .pricing{padding:4.5rem 2.5rem}
+  .dining{padding:6rem 2.5rem}
+  .dining-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center}
+  .pool-section{padding:6rem 2.5rem}
+  .pool-grid{max-width:1200px;margin:2.5rem auto 0}
+  .reviews{padding:6rem 2.5rem}
+  .review-scores{display:flex;gap:3rem;max-width:700px;margin:0 auto 3rem}
+  .reviews-grid{grid-template-columns:repeat(3,1fr);gap:1.4rem;max-width:1200px;margin:0 auto}
+  .faq{padding:5.5rem 2.5rem}
+  .location-section{padding:5rem 2.5rem}
+  .map-container{height:440px}
+  .booking-section{padding:5rem 2.5rem}
+  .booking-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:start}
+  .policies{padding:3.5rem 2.5rem}
+  .policies-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;max-width:980px;margin:0 auto}
+  footer{padding:4rem 2.5rem 2rem}
+  .footer-grid{grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;max-width:1200px;margin:0 auto 3rem}
+  .footer-bottom{flex-direction:row;max-width:1200px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeNav()"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="close-btn" onclick="closeNav()">✕</button>
+  <ul>
+    <li><a href="#about"     onclick="closeNav()">About</a></li>
+    <li><a href="#amenities" onclick="closeNav()">Amenities</a></li>
+    <li><a href="#rooms"     onclick="closeNav()">Rooms</a></li>
+    <li><a href="#dining"    onclick="closeNav()">Dining</a></li>
+    <li><a href="#reviews"   onclick="closeNav()">Reviews</a></li>
+    <li><a href="#location"  onclick="closeNav()">Location</a></li>
+    <li><a href="#booking"   onclick="closeNav()">Book Now</a></li>
+  </ul>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">ANINA'S<span> EXECUTIVE LODGE</span></a>
+  <a href="#booking" class="nav-cta">Book Now</a>
+  <button class="hamburger" onclick="openNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Lilayi Road · Lusaka · Zambia</div>
+    <h1>Where Comfort<br/><em>Meets Class</em></h1>
+    <p class="hero-sub">Pool · Restaurant · Free Breakfast · 12km from City Centre</p>
+    <div class="hero-cta">
+      <a href="#booking" class="btn-primary">Book a Room</a>
+      <a href="#rooms"   class="btn-outline">View Rooms</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">✓</span><div class="trust-text"><strong>Free Breakfast</strong>Included daily</div></div>
+    <div class="trust-item"><span class="trust-icon">🅿</span><div class="trust-text"><strong>Free Parking</strong>Secure on-site</div></div>
+    <div class="trust-item"><span class="trust-icon">📶</span><div class="trust-text"><strong>Free Wi-Fi</strong>Throughout lodge</div></div>
+    <div class="trust-item"><span class="trust-icon">🚐</span><div class="trust-text"><strong>Airport Shuttle</strong>On request</div></div>
+    <div class="trust-item"><span class="trust-icon">🏊</span><div class="trust-text"><strong>Outdoor Pool</strong>Open daily</div></div>
+    <div class="trust-item"><span class="trust-icon">🍽</span><div class="trust-text"><strong>Restaurant &amp; Bar</strong>On-site</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img"><img src="images/aerial.jpg" alt="Aerial view of Anina's Executive Lodge"/></div>
+  <div class="about-text">
+    <span class="section-label">Welcome</span>
+    <h2>Lusaka's <em>Hidden Gem</em><br/>on Lilayi Road</h2>
+    <p>Anina's Executive Lodge is a peaceful retreat nestled in Chilanga, just 12km from Lusaka's city centre. Set within lush tropical gardens, we offer the perfect balance of comfort, convenience, and warm Zambian hospitality.</p>
+    <p>Whether here for business or leisure, our lodge provides spacious rooms, a beautiful outdoor pool, an on-site restaurant, and everything you need for a relaxing stay.</p>
+    <p>Located on Plot 29B, Lilayi Road — easily accessible from Kafue Road, ideal for local and international visitors.</p>
+    <div class="about-stats">
+      <div><div class="stat-num">30</div><div class="stat-label">Guest Rooms</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label">Meeting Rooms</div></div>
+      <div><div class="stat-num">12km</div><div class="stat-label">From City Centre</div></div>
+      <div><div class="stat-num">★★★★★</div><div class="stat-label">Guest Rated</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — vertical auto-scroll -->
+<div class="gallery-strip-wrapper">
+  <div class="gallery-track">
+    <div class="gs-item"><img src="images/pool_wide.jpg" alt="Pool"/><div class="gs-caption">Outdoor Pool</div></div>
+    <div class="gs-item"><img src="images/gardens.jpg" alt="Gardens"/><div class="gs-caption">Lush Gardens</div></div>
+    <div class="gs-item"><img src="images/restaurant.jpg" alt="Restaurant"/><div class="gs-caption">Restaurant</div></div>
+    <div class="gs-item"><img src="images/room_standard.jpg" alt="Rooms"/><div class="gs-caption">Guest Rooms</div></div>
+    <div class="gs-item"><img src="images/food_chicken.jpg" alt="Dining"/><div class="gs-caption">Dining</div></div>
+    <div class="gs-item"><img src="images/pool_loungers.jpg" alt="Pool Area"/><div class="gs-caption">Pool Area</div></div>
+    <div class="gs-item"><img src="images/pool_wide.jpg" alt="Pool"/><div class="gs-caption">Outdoor Pool</div></div>
+    <div class="gs-item"><img src="images/gardens.jpg" alt="Gardens"/><div class="gs-caption">Lush Gardens</div></div>
+    <div class="gs-item"><img src="images/restaurant.jpg" alt="Restaurant"/><div class="gs-caption">Restaurant</div></div>
+    <div class="gs-item"><img src="images/room_standard.jpg" alt="Rooms"/><div class="gs-caption">Guest Rooms</div></div>
+    <div class="gs-item"><img src="images/food_chicken.jpg" alt="Dining"/><div class="gs-caption">Dining</div></div>
+    <div class="gs-item"><img src="images/pool_loungers.jpg" alt="Pool Area"/><div class="gs-caption">Pool Area</div></div>
+  </div>
+</div>
+
+<!-- AMENITIES -->
+<section class="amenities" id="amenities">
+  <div class="section-header">
+    <span class="section-label">What's Included</span>
+    <h2>Lodge <em>Amenities</em></h2>
+    <p>Everything you need for a comfortable stay — all included or available on-site.</p>
+  </div>
+  <div class="amenities-grid">
+    <div class="amenity-card"><div class="amenity-icon">🏊</div><div class="amenity-title">Outdoor Pool</div><div class="amenity-desc">Sparkling pool with sun loungers in tropical gardens.</div></div>
+    <div class="amenity-card"><div class="amenity-icon">🍳</div><div class="amenity-title">Free Breakfast</div><div class="amenity-desc">Complimentary breakfast every morning.</div><span class="amenity-tag">Free</span></div>
+    <div class="amenity-card"><div class="amenity-icon">📶</div><div class="amenity-title">Free Wi-Fi</div><div class="amenity-desc">High-speed internet in rooms and all common areas.</div><span class="amenity-tag">Free</span></div>
+    <div class="amenity-card"><div class="amenity-icon">🅿️</div><div class="amenity-title">Free Parking</div><div class="amenity-desc">Secure, free on-site parking for all guests.</div><span class="amenity-tag">Free</span></div>
+    <div class="amenity-card"><div class="amenity-icon">🍽️</div><div class="amenity-title">Restaurant &amp; Bar</div><div class="amenity-desc">On-site restaurant and bar serving daily.</div></div>
+    <div class="amenity-card"><div class="amenity-icon">✈️</div><div class="amenity-title">Airport Shuttle</div><div class="amenity-desc">24-hour airport transfers available on request.</div></div>
+    <div class="amenity-card"><div class="amenity-icon">👔</div><div class="amenity-title">Laundry Service</div><div class="amenity-desc">Dry cleaning and laundry for all guests.</div></div>
+    <div class="amenity-card"><div class="amenity-icon">🏢</div><div class="amenity-title">Meeting Rooms</div><div class="amenity-desc">Four fully equipped meeting rooms for events.</div></div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="rooms" id="rooms">
+  <div class="section-header">
+    <span class="section-label">Accommodations</span>
+    <h2>Our <em>Rooms</em></h2>
+    <p>All rooms feature AC, plasma TV, free Wi-Fi, refrigerator, electric kettle, and daily housekeeping.</p>
+  </div>
+  <div class="rooms-grid">
+
+    <div class="room-card">
+      <div class="room-img"><img src="images/room_standard.jpg" alt="Standard Room"/><span class="room-badge">Most Popular</span></div>
+      <div class="room-body">
+        <p class="room-type">Standard</p>
+        <h3 class="room-name">Standard Room</h3>
+        <p class="room-desc">Comfortable queen canopy bed, en-suite bathroom, and all essentials for a great stay.</p>
+        <div class="room-features"><span class="feat-tag">Queen Bed</span><span class="feat-tag">En-suite</span><span class="feat-tag">AC</span><span class="feat-tag">Wi-Fi</span><span class="feat-tag">Plasma TV</span></div>
+        <p class="room-price">From K534 <span>/ night</span><small>Breakfast included · Free parking</small></p>
+        <button class="room-book" onclick="bookRoom('Standard Room')">Request This Room</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <div class="room-img"><img src="images/room_deluxe.jpg" alt="Deluxe Room"/><span class="room-badge">Great Value</span></div>
+      <div class="room-body">
+        <p class="room-type">Deluxe</p>
+        <h3 class="room-name">Deluxe Room</h3>
+        <p class="room-desc">Spacious king canopy bed, sitting area, minibar, and premium en-suite.</p>
+        <div class="room-features"><span class="feat-tag">King Bed</span><span class="feat-tag">Sitting Area</span><span class="feat-tag">Minibar</span><span class="feat-tag">AC</span><span class="feat-tag">Wi-Fi</span></div>
+        <p class="room-price">From K750 <span>/ night</span><small>Breakfast included · Free parking</small></p>
+        <button class="room-book" onclick="bookRoom('Deluxe Room')">Request This Room</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <div class="room-img"><img src="images/suite_pink.jpg" alt="Executive Suite"/><span class="room-badge">Top Pick</span></div>
+      <div class="room-body">
+        <p class="room-type">Suite</p>
+        <h3 class="room-name">Executive Suite</h3>
+        <p class="room-desc">Grand king canopy bed, elegant décor, premium amenities — perfect for special occasions.</p>
+        <div class="room-features"><span class="feat-tag">King Canopy Bed</span><span class="feat-tag">Lounge Area</span><span class="feat-tag">Minibar</span><span class="feat-tag">Premium Bath</span></div>
+        <p class="room-price">From K1,100 <span>/ night</span><small>Breakfast included · Transfer on request</small></p>
+        <button class="room-book" onclick="bookRoom('Executive Suite')">Request This Room</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <div class="room-img"><img src="images/room_twin.jpg" alt="Twin Room"/></div>
+      <div class="room-body">
+        <p class="room-type">Twin</p>
+        <h3 class="room-name">Twin Room</h3>
+        <p class="room-desc">Two single canopy beds. Perfect for colleagues or friends travelling together.</p>
+        <div class="room-features"><span class="feat-tag">2 Single Beds</span><span class="feat-tag">En-suite</span><span class="feat-tag">AC</span><span class="feat-tag">Wi-Fi</span><span class="feat-tag">Plasma TV</span></div>
+        <p class="room-price">From K650 <span>/ night</span><small>Breakfast included · Free parking</small></p>
+        <button class="room-book" onclick="bookRoom('Twin Room')">Request This Room</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <div class="room-img"><img src="images/room_executive.jpg" alt="Executive Double"/></div>
+      <div class="room-body">
+        <p class="room-type">Executive</p>
+        <h3 class="room-name">Executive Double</h3>
+        <p class="room-desc">King canopy bed, sitting area, work desk, minibar — ideal for business travellers.</p>
+        <div class="room-features"><span class="feat-tag">King Bed</span><span class="feat-tag">Sitting Area</span><span class="feat-tag">Work Desk</span><span class="feat-tag">Minibar</span><span class="feat-tag">Wi-Fi</span></div>
+        <p class="room-price">From K900 <span>/ night</span><small>Breakfast included · Free parking</small></p>
+        <button class="room-book" onclick="bookRoom('Executive Double')">Request This Room</button>
+      </div>
+    </div>
+
+    <div class="room-card">
+      <div class="room-img"><img src="images/pool_loungers.jpg" alt="Pool View Room"/></div>
+      <div class="room-body">
+        <p class="room-type">Pool View</p>
+        <h3 class="room-name">Pool View Room</h3>
+        <p class="room-desc">Wake up to pool and garden views with all lodge comforts included.</p>
+        <div class="room-features"><span class="feat-tag">Queen Bed</span><span class="feat-tag">Pool View</span><span class="feat-tag">AC</span><span class="feat-tag">Wi-Fi</span><span class="feat-tag">Plasma TV</span></div>
+        <p class="room-price">From K600 <span>/ night</span><small>Breakfast included · Free parking</small></p>
+        <button class="room-book" onclick="bookRoom('Pool View Room')">Request This Room</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div style="max-width:900px;margin:0 auto">
+    <span class="section-label">No Hidden Fees</span>
+    <h2 class="pricing-title">Transparent <em>Pricing</em></h2>
+    <table class="pricing-table">
+      <thead><tr><th>Room Type</th><th>Rate / Night</th><th>Includes</th><th>Sleeps</th></tr></thead>
+      <tbody>
+        <tr><td>Standard Room</td>    <td class="price-cell">From K534</td>   <td>Breakfast · Wi-Fi · Parking</td>                     <td>1–2</td></tr>
+        <tr><td>Twin Room</td>        <td class="price-cell">From K650</td>   <td>Breakfast · Wi-Fi · Parking</td>                     <td>2</td></tr>
+        <tr><td>Pool View Room</td>   <td class="price-cell">From K600</td>   <td>Breakfast · Wi-Fi · Parking</td>                     <td>1–2</td></tr>
+        <tr><td>Deluxe Room</td>      <td class="price-cell">From K750</td>   <td>Breakfast · Wi-Fi · Minibar · Parking</td>           <td>1–2</td></tr>
+        <tr><td>Executive Double</td> <td class="price-cell">From K900</td>   <td>Breakfast · Wi-Fi · Parking</td>                     <td>1–2</td></tr>
+        <tr><td>Executive Suite</td>  <td class="price-cell">From K1,100</td> <td>Breakfast · Wi-Fi · Parking · Transfer on req.</td>  <td>2</td></tr>
+      </tbody>
+    </table>
+    <p class="pricing-note"><strong>Always included:</strong> Free breakfast, Wi-Fi, parking. <strong>Payment:</strong> 50% deposit to confirm, balance on arrival.</p>
+  </div>
+</section>
+
+<!-- DINING -->
+<section class="dining" id="dining">
+  <div class="dining-inner">
+    <div class="dining-photos">
+      <img src="images/restaurant.jpg" alt="Restaurant"/>
+      <img src="images/food_chicken.jpg" alt="Food"/>
+      <img src="images/food_steak.jpg" alt="Steak"/>
+    </div>
+    <div class="dining-text">
+      <span class="section-label">Food &amp; Drink</span>
+      <h2>Great Food,<br/><em>Every Day</em></h2>
+      <p>Our restaurant serves Zambian favourites and international dishes — freshly prepared daily. Start with a complimentary breakfast and end with dinner and drinks at the bar.</p>
+      <p>Room service available during limited hours.</p>
+      <p class="dining-hours">🕗 Restaurant open daily · Bar open until late</p>
+    </div>
+  </div>
+</section>
+
+<!-- POOL -->
+<section class="pool-section" id="pool">
+  <div class="section-header">
+    <span class="section-label">Relax &amp; Unwind</span>
+    <h2>The <em>Pool</em></h2>
+    <p>Crystal-clear outdoor pool surrounded by palm trees, sun loungers, and lush gardens.</p>
+  </div>
+  <div class="pool-grid">
+    <img src="images/pool_wide.jpg" alt="Pool wide"/>
+    <img src="images/pool_loungers.jpg" alt="Pool loungers"/>
+    <img src="images/pool_closeup.jpg" alt="Pool close"/>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-header">
+    <span class="section-label">Google Reviews</span>
+    <h2>What <em>Guests</em> Say</h2>
+  </div>
+  <div class="review-scores">
+    <div class="score-item"><div class="score-num">5</div><div class="score-label">Rooms</div></div>
+    <div class="score-item"><div class="score-num">5</div><div class="score-label">Service</div></div>
+    <div class="score-item"><div class="score-num">5</div><div class="score-label">Location</div></div>
+    <div class="score-item"><div class="score-num">★★★★★</div><div class="score-label">Google</div></div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-top"><span class="review-stars">★★★★★</span><span class="review-platform">Google · 2 months ago</span></div>
+      <p class="review-quote">"Nice looking and natural environment, unpolluted scenario as well as beautiful reception."</p>
+      <div class="review-meta">Rooms: 5 · Service: 5 · Location: 5</div>
+      <div class="review-footer"><div class="review-avatar">J</div><div><div class="review-name">Julious Lungu</div><div class="review-origin">Local Guide · 10 reviews</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><span class="review-stars">★★★★★</span><span class="review-platform">Google · 5 months ago</span></div>
+      <p class="review-quote">"Will highly recommend. Every time we are in Lusaka we visit this place — food is decent and accommodation prices are good."</p>
+      <div class="review-meta">Business · Couple</div>
+      <div class="review-footer"><div class="review-avatar">G</div><div><div class="review-name">Godfrey Mpandawana</div><div class="review-origin">Local Guide · 27 reviews</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-top"><span class="review-stars">★★★</span><span class="review-platform">Google · 8 months ago</span></div>
+      <p class="review-quote">"Beautiful place to stay near Lusaka. Room was clean and comfortable with working aircon, TV, and hot water."</p>
+      <div class="review-meta">Business · Couple</div>
+      <div class="review-footer"><div class="review-avatar">L</div><div><div class="review-name">Lynn Steenberg</div><div class="review-origin">Local Guide · 15 reviews</div></div></div>
+    </div>
+  </div>
+  <div class="reviews-cta">
+    <a href="https://maps.app.goo.gl/FbEZCmSEmFs1nkce8" target="_blank" class="btn-outline-gold">Read All Reviews on Google</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-header">
+    <span class="section-label">Good to Know</span>
+    <h2>Frequently Asked <em>Questions</em></h2>
+  </div>
+  <div class="faq-inner">
+    <div class="faq-item"><button class="faq-question">Is breakfast included? <span class="faq-arrow">▾</span></button><div class="faq-answer">Yes, complimentary breakfast is included with all rooms and served every morning. Please mention any dietary requirements when booking.</div></div>
+    <div class="faq-item"><button class="faq-question">Where is the lodge located? <span class="faq-arrow">▾</span></button><div class="faq-answer">Plot 29B, Lilayi Road, Chilanga — approximately 12km from Lusaka city centre, easily accessible from Kafue Road.</div></div>
+    <div class="faq-item"><button class="faq-question">Do you offer airport transfers? <span class="faq-arrow">▾</span></button><div class="faq-answer">Yes, 24-hour roundtrip airport transfers available on request. Surcharge applies. Please mention in your booking.</div></div>
+    <div class="faq-item"><button class="faq-question">Do you have conference facilities? <span class="faq-arrow">▾</span></button><div class="faq-answer">Yes — 4 fully equipped meeting rooms for corporate events and conferences. Contact us for availability and rates.</div></div>
+    <div class="faq-item"><button class="faq-question">What are check-in and check-out times? <span class="faq-arrow">▾</span></button><div class="faq-answer">Check-in from 14:00, check-out by 11:00. Early/late times available on request.</div></div>
+    <div class="faq-item"><button class="faq-question">How do I confirm a booking? <span class="faq-arrow">▾</span></button><div class="faq-answer">Fill in the booking form below and send via WhatsApp or email. We respond within hours. A 50% deposit confirms your room, balance due on arrival.</div></div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="section-header">
+    <span class="section-label">Find Us</span>
+    <h2>Our <em>Location</em></h2>
+    <p>Plot 29B, Lilayi Road, Chilanga · 12km from Lusaka City Centre</p>
+  </div>
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3847.89!2d28.27666!3d-15.47234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19408c3b2d5d5555%3A0x4b2c1e3f8a9d0e7c!2sAnina's%20Executive%20Lodge!5e0!3m2!1sen!2szm!4v1700000000000!5m2!1sen!2szm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+  <div class="location-cards">
+    <div class="loc-card"><span class="loc-icon">📍</span><div class="loc-label">Address</div><div class="loc-val">Plot 29B, Lilayi Road, Chilanga, Lusaka</div></div>
+    <div class="loc-card"><span class="loc-icon">🚗</span><div class="loc-label">From City Centre</div><div class="loc-val">~12km via Kafue Road · ~20 min</div></div>
+    <div class="loc-card"><span class="loc-icon">✈️</span><div class="loc-label">From Airport</div><div class="loc-val">~8km from KK International</div></div>
+    <div class="loc-card"><span class="loc-icon">📞</span><div class="loc-label">Call or WhatsApp</div><div class="loc-val"><a href="tel:+260211278010">+260 211 278 010</a><br/><a href="https://wa.me/260977508031">+260 977 508 031</a></div></div>
+  </div>
+  <div style="text-align:center">
+    <a href="https://maps.app.goo.gl/FbEZCmSEmFs1nkce8" target="_blank" class="btn-primary">Open in Google Maps</a>
+  </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="booking-section" id="booking">
+  <div class="section-header">
+    <span class="section-label">Reservations</span>
+    <h2>Book Your <em>Stay</em></h2>
+    <p>Fill in your details and send directly via WhatsApp or email. We confirm within a few hours.</p>
+  </div>
+  <div class="booking-inner">
+
+    <div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+        <div class="contact-detail"><strong>WhatsApp</strong>+260 977 508 031</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+        <div class="contact-detail"><strong>Telephone</strong>+260 211 278 010</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div class="contact-detail"><strong>Email</strong>tommylungu39@gmail.com</div>
+      </div>
+      <div class="avail-badge"><div class="avail-dot"></div><span>Rooms available now</span></div>
+    </div>
+
+    <div class="booking-form-box">
+      <h3 class="form-title">Booking Request</h3>
+      <span class="form-subtitle">Fill in your details · We confirm via WhatsApp</span>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" id="fname" placeholder="John"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" id="lname" placeholder="Doe"/></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="femail" placeholder="john@example.com"/></div>
+      <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" id="fphone" placeholder="+260 xxx xxx xxx"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Check-In</label><input type="date" id="fcheckin" onchange="calcEstimate()"/></div>
+        <div class="form-group"><label>Check-Out</label><input type="date" id="fcheckout" onchange="calcEstimate()"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Room</label>
+          <select id="froom" onchange="calcEstimate()">
+            <option value="">Select a room</option>
+            <option value="Standard Room|534">Standard Room — K534/night</option>
+            <option value="Twin Room|650">Twin Room — K650/night</option>
+            <option value="Pool View Room|600">Pool View Room — K600/night</option>
+            <option value="Deluxe Room|750">Deluxe Room — K750/night</option>
+            <option value="Executive Double|900">Executive Double — K900/night</option>
+            <option value="Executive Suite|1100">Executive Suite — K1,100/night</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Guests</label>
+          <select id="fguests">
+            <option value="1">1 Guest</option>
+            <option value="2" selected>2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5+ Guests</option>
+          </select>
+        </div>
+      </div>
+      <div class="price-estimate" id="festimate">
+        <div class="est-label">Estimated Total</div>
+        <div class="est-amount" id="festimateAmt">—</div>
+        <div class="est-note">Based on listed rates. Final confirmed on booking.</div>
+      </div>
+      <div class="form-group"><label>Special Requests</label><textarea id="fnotes" placeholder="Dietary needs, airport transfer, early check-in..."></textarea></div>
+      <div class="send-options">
+        <button class="btn-whatsapp" onclick="sendWhatsApp()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send via WhatsApp
+        </button>
+        <button class="btn-email" onclick="sendEmail()">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Send via Email
+        </button>
+      </div>
+      <p class="form-policy">Sends directly to our team. Your details are never shared.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section class="policies">
+  <div class="policies-inner">
+    <div class="policy-card"><div class="policy-icon">💳</div><h4 class="policy-title">Payment</h4><p class="policy-text">50% deposit to confirm. Balance due on arrival. Bank transfer and mobile money accepted.</p></div>
+    <div class="policy-card"><div class="policy-icon">🔄</div><h4 class="policy-title">Cancellation</h4><p class="policy-text">Free cancellation up to 48 hours before check-in. Within 48 hours — deposit retained.</p></div>
+    <div class="policy-card"><div class="policy-icon">✅</div><h4 class="policy-title">Our Promise</h4><p class="policy-text">No hidden charges. Full written quote before any deposit is taken.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">ANINA'S<span> EXECUTIVE LODGE</span></a>
+      <p>Plot 29B, Lilayi Road, Chilanga, Lusaka, Zambia. Warm, comfortable lodge for business and leisure.</p>
+      <a href="https://maps.app.goo.gl/FbEZCmSEmFs1nkce8" target="_blank" class="map-link">📍 View on Google Maps</a>
+    </div>
+    <div class="footer-col"><h4>Explore</h4><ul><li><a href="#about">About</a></li><li><a href="#amenities">Amenities</a></li><li><a href="#rooms">Rooms</a></li><li><a href="#dining">Dining</a></li></ul></div>
+    <div class="footer-col"><h4>Guests</h4><ul><li><a href="#pricing">Pricing</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#booking">Book a Stay</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul>
+      <li><a href="https://wa.me/260977508031">WhatsApp: +260 977 508 031</a></li>
+      <li><a href="tel:+260211278010">Tel: +260 211 278 010</a></li>
+      <li><a href="mailto:tommylungu39@gmail.com">tommylungu39@gmail.com</a></li>
+      <li><a href="https://maps.app.goo.gl/FbEZCmSEmFs1nkce8" target="_blank">Get Directions</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Anina's Executive Lodge · Plot 29B Lilayi Road, Lusaka</p>
+    <p>+260 977 508 031 · +260 211 278 010</p>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/260977508031?text=Hello%2C%20I'd%20like%20to%20enquire%20about%20a%20room%20at%20Anina's%20Executive%20Lodge." class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* ── NAV ── */
+function openNav()  { document.getElementById('mobileNav').classList.add('open');    document.getElementById('overlay').classList.add('show');    document.body.style.overflow='hidden'; }
+function closeNav() { document.getElementById('mobileNav').classList.remove('open'); document.getElementById('overlay').classList.remove('show'); document.body.style.overflow=''; }
+window.addEventListener('scroll', function() { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60); });
+
+/* ── SCROLL TO BOOKING + PRE-SELECT ROOM ── */
+function bookRoom(name) {
+  var sel = document.getElementById('froom');
+  if (sel) {
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value.indexOf(name) === 0) { sel.selectedIndex = i; break; }
+    }
+    calcEstimate();
+  }
+  var s = document.getElementById('booking');
+  if (s) window.scrollTo({ top: s.offsetTop - 80, behavior: 'smooth' });
+}
+
+/* ── PRICE ESTIMATE ── */
+function calcEstimate() {
+  var ci = document.getElementById('fcheckin').value;
+  var co = document.getElementById('fcheckout').value;
+  var rv = document.getElementById('froom').value;
+  var el = document.getElementById('festimate');
+  var amt = document.getElementById('festimateAmt');
+  if (!ci || !co || !rv) { el.classList.remove('show'); return; }
+  var nights = Math.max(1, Math.round((new Date(co) - new Date(ci)) / 86400000));
+  var rate = parseInt(rv.split('|')[1]) || 0;
+  amt.textContent = 'K' + (rate * nights).toLocaleString() + ' total (' + nights + ' night' + (nights > 1 ? 's' : '') + ')';
+  el.classList.add('show');
+}
+
+/* ── READ FIELD ── */
+function g(id) { var e = document.getElementById(id); return e ? (e.value || '').trim() : ''; }
+
+/* ── SEND WHATSAPP ── */
+function sendWhatsApp() {
+  var name = (g('fname') + ' ' + g('lname')).trim() || 'Guest';
+  var room = g('froom') ? g('froom').split('|')[0] : 'Not specified';
+  var el   = document.getElementById('festimate');
+  var est  = (el && el.classList.contains('show')) ? document.getElementById('festimateAmt').textContent : 'To be quoted';
+  var msg  = '🏨 *Aninas Executive Lodge – Booking Request*\n\n'
+    + '👤 *Name:*      ' + name                    + '\n'
+    + '📧 *Email:*     ' + (g('femail')   || 'N/A') + '\n'
+    + '📞 *Phone:*     ' + (g('fphone')   || 'N/A') + '\n'
+    + '🛏  *Room:*      ' + room                    + '\n'
+    + '👥 *Guests:*    ' + (g('fguests')  || '2')   + '\n'
+    + '📅 *Check-In:*  ' + (g('fcheckin') || 'Flexible') + '\n'
+    + '📅 *Check-Out:* ' + (g('fcheckout')|| 'Flexible') + '\n'
+    + '💰 *Estimate:*  ' + est                      + '\n'
+    + '📝 *Requests:*  ' + (g('fnotes')   || 'None') + '\n\n'
+    + 'Kindly confirm availability. Thank you!';
+  window.open('https://wa.me/260977508031?text=' + encodeURIComponent(msg), '_blank');
+}
+
+/* ── SEND EMAIL ── */
+function sendEmail() {
+  var name = (g('fname') + ' ' + g('lname')).trim() || 'Guest';
+  var room = g('froom') ? g('froom').split('|')[0] : 'Not specified';
+  var el   = document.getElementById('festimate');
+  var est  = (el && el.classList.contains('show')) ? document.getElementById('festimateAmt').textContent : 'To be quoted';
+  var subject = 'Booking Request - ' + name + ' | ' + room;
+  var body = 'Dear Aninas Executive Lodge Team,\n\nI would like to request a booking.\n\n'
+    + 'BOOKING DETAILS\n---------------\n'
+    + 'Name:      ' + name                    + '\n'
+    + 'Email:     ' + (g('femail')   || 'N/A') + '\n'
+    + 'Phone:     ' + (g('fphone')   || 'N/A') + '\n'
+    + 'Room:      ' + room                    + '\n'
+    + 'Guests:    ' + (g('fguests')  || '2')   + '\n'
+    + 'Check-In:  ' + (g('fcheckin') || 'Flexible') + '\n'
+    + 'Check-Out: ' + (g('fcheckout')|| 'Flexible') + '\n'
+    + 'Estimate:  ' + est                      + '\n'
+    + 'Requests:  ' + (g('fnotes')   || 'None') + '\n\n'
+    + 'Please confirm availability.\n\nKind regards,\n' + name;
+  window.location.href = 'mailto:tommylungu39@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+/* ── FAQ ── */
+document.addEventListener('DOMContentLoaded', function() {
+  /* Date pickers */
+  var today = new Date().toISOString().split('T')[0];
+  var ci = document.getElementById('fcheckin');
+  var co = document.getElementById('fcheckout');
+  if (ci) { ci.min = today; ci.addEventListener('change', function(){ if(co) co.min=this.value; calcEstimate(); }); }
+  if (co) { co.min = today; }
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.parentElement;
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(i){ i.classList.remove('open'); });
+      if (!open) item.classList.add('open');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
