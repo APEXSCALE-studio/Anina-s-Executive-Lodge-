@@ -142,4 +142,4 @@ This project is a client demo built by Apexscale Studio. All lodge branding, ima
 
 ---
 
-*Built with 💛 by Apexscale Studio · Lusaka, Zambia*
+*Built by Apexscale Studio · Lusaka, Zambia*
